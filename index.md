@@ -1,4 +1,7 @@
 # Hi, my name is Sebi!
 ## I am named Sebi
 *I am hungry*
+
 **So hungry**
+
+[Lab Report 1](lab-report-1-week-0.html)
