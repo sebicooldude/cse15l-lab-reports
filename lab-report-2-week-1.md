@@ -88,7 +88,7 @@ Substitute your given directory and username in the line above.
 
 As you can see in the screenshot above, a password is no longer necessary. This means you can save a lot of time in logging in. 
 
-**Part 8:**
+**Step 6:**
 Making remote running even more pleasant
 
 You can make this process even more efficient! Instead of writing multiple lines, you can write everything in one line. For example, 
