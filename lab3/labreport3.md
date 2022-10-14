@@ -1,7 +1,7 @@
 # Lab Report 3
 # Part 1:
 **This is the code I created for my SearchEngine:**
-<code><pre>
+<pre><code>
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList; // import the ArrayList class
@@ -81,14 +81,12 @@ The above checks to see if the path equals "/add". It then checks the query, and
 
 Then, if s is the zero indice (parameters[0]), it adds indice 1 (parameters[1]) to the list of words (which is an ArrayList). As such, pineapple will be added to the list of words.
 
-<br></br>
 ![Image](step2.png)
 
 The above checks to see if the path equals "/add". It then checks the query, and creates a new array 'parameters' with indice 0 before the equals sign, and indice 1 after the equals sign. The array will then be [s apple].
 
 Then, if s is the zero indice (parameters[0]), it adds indice 1 (parameters[1]) to the list of words (which is an ArrayList). As such, apple will be added to the list of words.
 
-<br></br>
 ![Image](step3.png)
 
 The above checks to if the path equals "/search". It then check the query, and creates a new array 'parameters' with indice 0 before the equals sign, and indice 1 after the equals sign. The array will then be [s app]
