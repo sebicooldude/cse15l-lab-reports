@@ -8,3 +8,5 @@
 
 
 [Lab Report 2](lab-report-2-week-1.html)
+
+[Lab Report 3](lab3/labreport3.md)
