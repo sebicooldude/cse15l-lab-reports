@@ -1,25 +1,24 @@
 # Hi, welcome to this Tutorial!
 ## This will teach you how to access the remote server on a Mac
 
-**Step 1:**
-Installing Visual Studio Code
+**Step 1: Installing Visual Studio Code**
 
 To download visual studio code, go to code.visualstudio.com and click the download button. 
 
 ![Image](step1.png)
 
-**Step 2:**
-Remotely connecting.
+**Step 2: Remotely connecting.**
 
 To Remotely connect, you must have your account number and password on hand. 
 
-To obtain your account number/change your password, go here: https://sdacs.ucsd.edu/~icc/index.php
+To obtain your account number/change your password, go [here](https://sdacs.ucsd.edu/~icc/index.php)
 
 Open a terminal in VSCode. Click terminal in the toolbar and then click 'New Terminal.'
 
 Type:
 
-ssh cs15lfa22zz@ieng6.ucsd.edu
+
+>`ssh cs15lfa22zz@ieng6.ucsd.edu`
 
 where zz is your specific account characters.
 
@@ -29,42 +28,47 @@ You should be prompted to enter a password, and after doing so should see someth
 
 If you see a similar screen then you have gained access to the remote server. 
 
-**Step 3:**
-Trying some commands
+**Step 3: Trying some commands**
 
 Try running some commands such as cd, ls, pwd, mkdir, and cp. Run them a few tiems, on your computer and on the remote server.
+
+cd - Allows you change directories
+
+ls - Shows files in current directory
+
+pwd - Provides pathname of current directory
+
+mkdir - Used to make a new directory
 
 *To exit the remote server, type exit or control-D*
 
 You may see something like this:
 ![Image](step3.png)
 
-**Step 4:**
-Moving files with scp
+**Step 4: Moving files with scp**
 
 scp can be used to copy a file from your computer to a remote computer. 
 
 Create a file on your computer called WhereAmI.java with the following contents.
 
->class WhereAmI {
+>`class WhereAmI {
   public static void main(String[] args) {
     System.out.println(System.getProperty("os.name"));
     System.out.println(System.getProperty("user.name"));
     System.out.println(System.getProperty("user.home"));
     System.out.println(System.getProperty("user.dir"));
     }
-}
+}`
 
 Use the commands javac and java on the file to compile, and run it. Then run this command
 
->scp WhereAmI.java cs15lfa22zz@ieng6.ucsd.edu:~/
+>`scp WhereAmI.java cs15lfa22zz@ieng6.ucsd.edu:~/`
 
 You'll be prompted to enter your password. After doing so, type ls and you can see the new file in your remote directory!
 
 ![Image](step4.png)
 
-**Step 5:**
-Setting a SSH key
+**Step 5: Setting a SSH key**
 
 An SSH key stores a file on the remote server as well as on your computer. These pair of files can be used in place of your password. 
 
@@ -88,8 +92,8 @@ Substitute your given directory and username in the line above.
 
 As you can see in the screenshot above, a password is no longer necessary. This means you can save a lot of time in logging in. 
 
-**Step 6:**
-Making remote running even more pleasant
+**Step 6: Making remote running even more pleasant**
+
 
 You can make this process even more efficient! Instead of writing multiple lines, you can write everything in one line. For example, 
 
