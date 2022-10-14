@@ -1,7 +1,8 @@
 # Lab Report 3
 # Part 1:
 **This is the code I created for my SearchEngine:**
-<pre><code>import java.io.IOException;
+<code><pre>
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList; // import the ArrayList class
 
@@ -73,6 +74,7 @@ class SearchEngine {
     }
 }
 </code></pre>
+
 
 ![Image](step1.png)
 The above checks to see if the path equals "/add". It then checks the query, and creates a new array 'parameters' with indice 0 before the equals sign, and indice 1 after the equals sign. The array will then be [s pineapple].
