@@ -1,78 +1,77 @@
 # Lab Report 3
 # Part 1:
 **This is the code I created for my SearchEngine:**
-<pre><code>
-    import java.io.IOException;
-    import java.net.URI;
-    import java.util.ArrayList; // import the ArrayList class
+<pre><code>import java.io.IOException;
+  import java.net.URI;
+  import java.util.ArrayList; // import the ArrayList class
 
-    class Handler implements URLHandler {
-        // The one bit of state on the server: a number that will be manipulated by
-        // various requests.
-        int num = 0;
-        ArrayList<String> words = new ArrayList<String>();
-        public String handleRequest(URI url) {
-            if (url.getPath().equals("/")) {
-                return String.format("Number: %d", num);
-            } else if (url.getPath().equals("/increment")) {
-                num += 1;
-                return String.format("Number incremented!");
-            } 
-            else if (url.getPath().equals("/search")){
-                String[] parameters = url.getQuery().split("=");
-                if (parameters[0].equals("s")) {
-                    ArrayList<String> temp = new ArrayList<String>();
-                    for(int i = 0; i < words.size(); i++){
-                        if (words.get(i).contains(parameters[1])){
-                            temp.add(words.get(i));
-                            System.out.println("Temp List: ");
-                            System.out.println(temp);
-                        }
-                    }
-                    String searchreturn = "";
-                    for (int m = 0; m<temp.size();m++){
-                        if(m==0){
-                            searchreturn = temp.get(m);
-                        }
-                        if(m>0){
-                            searchreturn = searchreturn + " and " + temp.get(m);
-                        }
-                    }
-                    if(temp.size()!= 0){
-                        return searchreturn;
-                    }
-                    else{
-                        return "Doesn't exist";
-                    }
-                }
-                return "Error";
-            }
-            if (url.getPath().equals("/add")) {
-                String[] parameters = url.getQuery().split("=");
-                if (parameters[0].equals("s")) {
-                    words.add(parameters[1]);
-                }
-                if (parameters[0].equals("count")){
-                    num += Integer.parseInt(parameters[1]);
-                }
+  class Handler implements URLHandler {
+      // The one bit of state on the server: a number that will be manipulated by
+      // various requests.
+      int num = 0;
+      ArrayList<String> words = new ArrayList<String>();
+      public String handleRequest(URI url) {
+          if (url.getPath().equals("/")) {
+              return String.format("Number: %d", num);
+          } else if (url.getPath().equals("/increment")) {
+              num += 1;
+              return String.format("Number incremented!");
+          } 
+          else if (url.getPath().equals("/search")){
+              String[] parameters = url.getQuery().split("=");
+              if (parameters[0].equals("s")) {
+                  ArrayList<String> temp = new ArrayList<String>();
+                  for(int i = 0; i < words.size(); i++){
+                      if (words.get(i).contains(parameters[1])){
+                          temp.add(words.get(i));
+                          System.out.println("Temp List: ");
+                          System.out.println(temp);
+                      }
+                  }
+                  String searchreturn = "";
+                  for (int m = 0; m<temp.size();m++){
+                      if(m==0){
+                          searchreturn = temp.get(m);
+                      }
+                      if(m>0){
+                          searchreturn = searchreturn + " and " + temp.get(m);
+                      }
+                  }
+                  if(temp.size()!= 0){
+                      return searchreturn;
+                  }
+                  else{
+                      return "Doesn't exist";
+                  }
+              }
+              return "Error";
+          }
+          if (url.getPath().equals("/add")) {
+              String[] parameters = url.getQuery().split("=");
+              if (parameters[0].equals("s")) {
+                  words.add(parameters[1]);
+              }
+              if (parameters[0].equals("count")){
+                  num += Integer.parseInt(parameters[1]);
+              }
 
-            }
-                return "404 Not Found!";
-        }
-    }
+          }
+              return "404 Not Found!";
+      }
+  }
 
-    class SearchEngine {
-        public static void main(String[] args) throws IOException {
-            if(args.length == 0){
-                System.out.println("Missing port number! Try any number between 1024 to 49151");
-                return;
-            }
+  class SearchEngine {
+      public static void main(String[] args) throws IOException {
+          if(args.length == 0){
+              System.out.println("Missing port number! Try any number between 1024 to 49151");
+              return;
+          }
 
-            int port = Integer.parseInt(args[0]);
+          int port = Integer.parseInt(args[0]);
 
-            Server.start(port, new Handler());
-        }
-    }
+          Server.start(port, new Handler());
+      }
+  }
 </code></pre>
 
 
