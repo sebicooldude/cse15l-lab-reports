@@ -2,77 +2,77 @@
 # Part 1:
 **This is the code I created for my SearchEngine:**
 <pre><code>
-import java.io.IOException;
-import java.net.URI;
-import java.util.ArrayList; // import the ArrayList class
+    import java.io.IOException;
+    import java.net.URI;
+    import java.util.ArrayList; // import the ArrayList class
 
-class Handler implements URLHandler {
-    // The one bit of state on the server: a number that will be manipulated by
-    // various requests.
-    int num = 0;
-    ArrayList<String> words = new ArrayList<String>();
-    public String handleRequest(URI url) {
-        if (url.getPath().equals("/")) {
-            return String.format("Number: %d", num);
-        } else if (url.getPath().equals("/increment")) {
-            num += 1;
-            return String.format("Number incremented!");
-        } 
-        else if (url.getPath().equals("/search")){
-            String[] parameters = url.getQuery().split("=");
-            if (parameters[0].equals("s")) {
-                ArrayList<String> temp = new ArrayList<String>();
-                for(int i = 0; i < words.size(); i++){
-                    if (words.get(i).contains(parameters[1])){
-                        temp.add(words.get(i));
-                        System.out.println("Temp List: ");
-                        System.out.println(temp);
+    class Handler implements URLHandler {
+        // The one bit of state on the server: a number that will be manipulated by
+        // various requests.
+        int num = 0;
+        ArrayList<String> words = new ArrayList<String>();
+        public String handleRequest(URI url) {
+            if (url.getPath().equals("/")) {
+                return String.format("Number: %d", num);
+            } else if (url.getPath().equals("/increment")) {
+                num += 1;
+                return String.format("Number incremented!");
+            } 
+            else if (url.getPath().equals("/search")){
+                String[] parameters = url.getQuery().split("=");
+                if (parameters[0].equals("s")) {
+                    ArrayList<String> temp = new ArrayList<String>();
+                    for(int i = 0; i < words.size(); i++){
+                        if (words.get(i).contains(parameters[1])){
+                            temp.add(words.get(i));
+                            System.out.println("Temp List: ");
+                            System.out.println(temp);
+                        }
+                    }
+                    String searchreturn = "";
+                    for (int m = 0; m<temp.size();m++){
+                        if(m==0){
+                            searchreturn = temp.get(m);
+                        }
+                        if(m>0){
+                            searchreturn = searchreturn + " and " + temp.get(m);
+                        }
+                    }
+                    if(temp.size()!= 0){
+                        return searchreturn;
+                    }
+                    else{
+                        return "Doesn't exist";
                     }
                 }
-                String searchreturn = "";
-                for (int m = 0; m<temp.size();m++){
-                    if(m==0){
-                        searchreturn = temp.get(m);
-                    }
-                    if(m>0){
-                        searchreturn = searchreturn + " and " + temp.get(m);
-                    }
-                }
-                if(temp.size()!= 0){
-                    return searchreturn;
-                }
-                else{
-                    return "Doesn't exist";
-                }
+                return "Error";
             }
-            return "Error";
-        }
-        if (url.getPath().equals("/add")) {
-            String[] parameters = url.getQuery().split("=");
-            if (parameters[0].equals("s")) {
-                words.add(parameters[1]);
-            }
-            if (parameters[0].equals("count")){
-                num += Integer.parseInt(parameters[1]);
-            }
+            if (url.getPath().equals("/add")) {
+                String[] parameters = url.getQuery().split("=");
+                if (parameters[0].equals("s")) {
+                    words.add(parameters[1]);
+                }
+                if (parameters[0].equals("count")){
+                    num += Integer.parseInt(parameters[1]);
+                }
 
+            }
+                return "404 Not Found!";
         }
-            return "404 Not Found!";
     }
-}
 
-class SearchEngine {
-    public static void main(String[] args) throws IOException {
-        if(args.length == 0){
-            System.out.println("Missing port number! Try any number between 1024 to 49151");
-            return;
+    class SearchEngine {
+        public static void main(String[] args) throws IOException {
+            if(args.length == 0){
+                System.out.println("Missing port number! Try any number between 1024 to 49151");
+                return;
+            }
+
+            int port = Integer.parseInt(args[0]);
+
+            Server.start(port, new Handler());
         }
-
-        int port = Integer.parseInt(args[0]);
-
-        Server.start(port, new Handler());
     }
-}
 </code></pre>
 
 
@@ -154,33 +154,33 @@ This loop will never end since it's incrementing index1, rather than index 2, wh
 My updated code solves the problem and also works for any data entered, even if unordered. 
 
 <pre><code>
-static List<String> merge(List<String> list1, List<String> list2) {
-    List<String> result = new ArrayList<>();
-    List<String> tempList = new ArrayList<>();
-    for (int i = 0; i<list1.size(); i++){
-      tempList.add(list1.get(i));
-    }
-    for (int i = 0; i<list2.size(); i++){
-      tempList.add(list2.get(i));
-    }
-    int size = tempList.size();
-    for (int j = 0; j<size; j++){
-      String currentsmallest = tempList.get(0);
-      for (int i = 0; i<tempList.size(); i++){
-        if (currentsmallest.compareTo(tempList.get(i)) > 0){
-          currentsmallest = tempList.get(i);
+    static List<String> merge(List<String> list1, List<String> list2) {
+        List<String> result = new ArrayList<>();
+        List<String> tempList = new ArrayList<>();
+        for (int i = 0; i<list1.size(); i++){
+          tempList.add(list1.get(i));
         }
-      }
-      result.add(currentsmallest);
-      int count = 0;
-      for(int m = 0; m < tempList.size(); m++){
-        if (tempList.get(m).equals(currentsmallest)){
-          tempList.remove(m);
+        for (int i = 0; i<list2.size(); i++){
+          tempList.add(list2.get(i));
         }
-      }
-    }
-    return result;
-      }
+        int size = tempList.size();
+        for (int j = 0; j<size; j++){
+          String currentsmallest = tempList.get(0);
+          for (int i = 0; i<tempList.size(); i++){
+            if (currentsmallest.compareTo(tempList.get(i)) > 0){
+              currentsmallest = tempList.get(i);
+            }
+          }
+          result.add(currentsmallest);
+          int count = 0;
+          for(int m = 0; m < tempList.size(); m++){
+            if (tempList.get(m).equals(currentsmallest)){
+              tempList.remove(m);
+            }
+          }
+        }
+        return result;
+          }
 </code></pre>
 
 This code places both lists into one list. Then, it finds the string within the List of lowest value with a for loop, and adds it to the result list, and removes it from the argument. It repeats this for loop until it's gone through all elements, and they're reordered into the result List. Then it returns the result.
