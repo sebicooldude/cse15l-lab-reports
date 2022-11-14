@@ -13,4 +13,4 @@
 
 [Lab Report Week 5](lab5report.md)
 
-[Lab Report Week 5](week6lab/week6lab.md)
+[Lab Report Week 6](week6lab/week6lab.md)
