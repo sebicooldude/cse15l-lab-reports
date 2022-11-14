@@ -12,3 +12,5 @@
 [Lab Report 3](lab3/labreport3.md)
 
 [Lab Report Week 5](lab5report.md)
+
+[Lab Report Week 5](week6lab/week6lab.md)
