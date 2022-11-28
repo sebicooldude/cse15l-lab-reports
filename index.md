@@ -15,4 +15,4 @@
 
 [Lab Report Week 6](week6lab/week6lab.md)
 
-[Lab Report 5](../list-examples-grader/tree/main/labReport5/labreport5.md)
+[Lab Report 5](labreport5.md)
