@@ -10,3 +10,9 @@
 [Lab Report 2](lab-report-2-week-1.html)
 
 [Lab Report 3](lab3/labreport3.md)
+
+[Lab Report Week 5](lab5report.md)
+
+[Lab Report Week 6](week6lab/week6lab.md)
+
+[Lab Report 5](../list-examples-grader/tree/main/labReport5/labreport5.md)
